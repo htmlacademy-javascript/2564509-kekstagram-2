@@ -5,5 +5,9 @@
 // Строка длиннее 10 символов
 // имяФункции('проверяемая строка', 10); // false
 function checkFunction(str, length) {
-    return str.length === length;
+  return str.length === length;
+}
+
+function isPolindrom (str) {
+  return str === str.split('').reverse().join('');
 }
