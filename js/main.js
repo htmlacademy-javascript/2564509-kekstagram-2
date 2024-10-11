@@ -13,40 +13,44 @@ const messages = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
 ];
 
+const comment = function() {
+  return {
+    id: getRandomInt(100, 999), // уникальный id для комментария
+    avatar: `img/avatar-${getRandomInt(1, 6)}.svg`,
+    message: messages[getRandomInt(0, messages.length - 1)],
+    name: names[getRandomInt(0, names.length - 1)]
+  };
+};
 function generateComments(numComments) {
   const comments = [];
   for (let i = 0; i < numComments; i++) {
-    const comment = {
-      id: getRandomInt(100, 999), // уникальный id для комментария
-      avatar: `img/avatar-${getRandomInt(1, 6)}.svg`,
-      message: messages[getRandomInt(0, messages.length - 1)],
-      name: names[getRandomInt(0, names.length - 1)]
-    };
-    comments.push(comment);
+    comments.push(comment());
   }
   return comments;
 }
 
+const photo = function (id) {
+  return {
+    id : id,
+    url: `photos/${id}.jpg`,
+    description:`Описание фотографии номер ${id}`,
+    likes:getRandomInt(15, 200),
+    comments:generateComments(getRandomInt(0, 30))
+  };
+};
+
 function getPhotos() {
   const photos = [];
   for (let i = 1; i <= 25; i++) {
-    const photo = {
-      id : i,
-      url: `photos/${i}.jpg`,
-      description:`Описание фотографии номер ${i}`,
-      likes:getRandomInt(15, 200),
-      comments:generateComments(getRandomInt(0, 30))
-    };
-    photos.push(photo);
+    photos.push(photo(i));
   }
   return photos;
 
 }
 
 
-const photoArray = getPhotos();
+// const photoArray = getPhotos();
 
 // Вывод всех объектов в консоль в текстовом формате
-photoArray.forEach(photo => {
-  console.log(JSON.stringify(photo, null, 2));
-});
+
+console.log(JSON.stringify(getPhotos(), null, 2));
