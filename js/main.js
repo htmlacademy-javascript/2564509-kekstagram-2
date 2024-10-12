@@ -51,6 +51,3 @@ function getPhotos() {
 
 // const photoArray = getPhotos();
 
-// Вывод всех объектов в консоль в текстовом формате
-
-console.log(JSON.stringify(getPhotos(), null, 2));
